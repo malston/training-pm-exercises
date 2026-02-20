@@ -12,9 +12,11 @@ import java.util.Optional;
 public class OrderService {
 
     private final OrderRepository orderRepository;
+    private final NotificationService notificationService;
 
-    public OrderService(OrderRepository orderRepository) {
+    public OrderService(OrderRepository orderRepository, NotificationService notificationService) {
         this.orderRepository = orderRepository;
+        this.notificationService = notificationService;
     }
 
     public List<Order> getAllOrders() {
@@ -38,10 +40,18 @@ public class OrderService {
         return orderRepository.save(order);
     }
 
-    public Optional<Order> updateOrderStatus(Long id, OrderStatus status) {
+    public Optional<Order> updateOrderStatus(Long id, OrderStatus newStatus) {
         return orderRepository.findById(id).map(order -> {
-            order.setStatus(status);
-            return orderRepository.save(order);
+            OrderStatus oldStatus = order.getStatus();
+            if (oldStatus == newStatus) {
+                return order;
+            }
+            order.setStatus(newStatus);
+            Order saved = orderRepository.save(order);
+            notificationService.sendStatusChangeEmail(saved, oldStatus, newStatus);
+            notificationService.sendStatusChangeSms(saved, oldStatus, newStatus);
+            notificationService.sendSlackNotification(saved, oldStatus, newStatus);
+            return saved;
         });
     }
 
