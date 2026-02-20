@@ -31,7 +31,7 @@ Ask Claude to help evaluate your rewrites:
 
 > "Here's a ticket I rewrote with Given/When/Then acceptance criteria. Are these testable? Could a developer write automated tests directly from these criteria? What edge cases am I missing?"
 
-See `exercises/05-tdd/examples.md` for before/after examples.
+See `modules/05-tdd/examples.md` for before/after examples.
 
 ## Exercise 3: Validate Against the Code
 
