@@ -5,13 +5,13 @@ Exercise materials for the [Product Manager Learning Path](https://malston.githu
 ## Project Structure
 
 ```
-training-pm-exercises/
+training-pm-modules/
 ├── backlog/              # Mock product backlog
 │   ├── features/         # Feature requests (mix of well and poorly written)
 │   ├── bugs/             # Bug reports
 │   └── improvements/     # Enhancement requests
 ├── app/                  # Order management service (Java/Spring Boot)
-├── exercises/            # Exercise instructions per module
+├── modules/            # Exercise instructions per module
 ├── templates/            # Reusable templates (acceptance criteria, decomposition)
 └── CLAUDE.md             # Project conventions for Claude Code
 ```
@@ -40,13 +40,13 @@ The order service API starts at `http://localhost:8080`.
 
 ## Exercises by Module
 
-| Module                   | Directory                          | Focus                                |
-| ------------------------ | ---------------------------------- | ------------------------------------ |
-| 1. How Claude Code Works | `exercises/01-claude-code-basics/` | Setting expectations                 |
-| 2. Design Principles     | `exercises/02-design-principles/`  | Recognizing good design              |
-| 3. Architecture          | `exercises/03-architecture/`       | Evaluating trade-offs                |
-| 4. Coding Standards      | `exercises/04-coding-standards/`   | Why conventions matter               |
-| 5. TDD                   | `exercises/05-tdd/`                | Writing testable acceptance criteria |
-| 6. Workflows             | `exercises/06-workflows/`          | PR review, feature decomposition     |
+| Module                   | Directory                        | Focus                                |
+| ------------------------ | -------------------------------- | ------------------------------------ |
+| 1. How Claude Code Works | `modules/01-claude-code-basics/` | Setting expectations                 |
+| 2. Design Principles     | `modules/02-design-principles/`  | Recognizing good design              |
+| 3. Architecture          | `modules/03-architecture/`       | Evaluating trade-offs                |
+| 4. Coding Standards      | `modules/04-coding-standards/`   | Why conventions matter               |
+| 5. TDD                   | `modules/05-tdd/`                | Writing testable acceptance criteria |
+| 6. Workflows             | `modules/06-workflows/`          | PR review, feature decomposition     |
 
 Each exercise directory has a `README.md` with instructions.
