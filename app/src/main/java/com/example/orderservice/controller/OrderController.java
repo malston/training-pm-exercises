@@ -23,9 +23,12 @@ public class OrderController {
 
     @GetMapping
     public ResponseEntity<List<Order>> getAllOrders(
-            @RequestParam(required = false) OrderStatus status) {
+            @RequestParam(required = false) OrderStatus status,
+            @RequestParam(required = false) String email) {
         List<Order> orders;
-        if (status != null) {
+        if (email != null) {
+            orders = orderService.getOrdersByCustomerEmail(email);
+        } else if (status != null) {
             orders = orderService.getOrdersByStatus(status);
         } else {
             orders = orderService.getAllOrders();
