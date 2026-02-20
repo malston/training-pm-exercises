@@ -56,6 +56,19 @@ public class OrderController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @PatchMapping("/bulk-status")
+    public ResponseEntity<List<Order>> bulkUpdateStatus(@RequestBody Map<String, Object> body) {
+        @SuppressWarnings("unchecked")
+        List<Integer> ids = (List<Integer>) body.get("ids");
+        OrderStatus status = OrderStatus.valueOf((String) body.get("status"));
+        List<Order> updated = ids.stream()
+                .map(id -> orderService.updateOrderStatus(id.longValue(), status))
+                .filter(java.util.Optional::isPresent)
+                .map(java.util.Optional::get)
+                .toList();
+        return ResponseEntity.ok(updated);
+    }
+
     @PostMapping("/{id}/cancel")
     public ResponseEntity<Void> cancelOrder(@PathVariable Long id) {
         if (orderService.cancelOrder(id)) {
